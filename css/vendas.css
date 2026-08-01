@@ -259,3 +259,31 @@
   0%,100%{transform:translate3d(0,0,0) rotate(0)}
   50%{transform:translate3d(18px,-8px,0) rotate(1deg)}
 }
+
+
+/* Ajuste final do chip Sua ideia no mobile. */
+@media(max-width:700px){
+  .hero-builder{
+    min-height:470px;
+    padding-bottom:54px;
+    overflow:visible;
+  }
+  .builder-window{bottom:auto}
+  .idea-chip{
+    left:10px;
+    bottom:2px;
+    z-index:6;
+    margin:0;
+    padding:9px 12px;
+    font-size:10px;
+    animation-name:ideaChipSafeMobile!important;
+  }
+}
+@keyframes ideaChipSafeMobile{
+  0%,100%{transform:translate3d(0,0,0)}
+  50%{transform:translate3d(14px,-5px,0)}
+}
+@media(max-width:380px){
+  .hero-builder{min-height:462px;padding-bottom:52px}
+  .idea-chip{left:8px;bottom:2px}
+}
