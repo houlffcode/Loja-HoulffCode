@@ -174,3 +174,88 @@
 @media(max-width:380px){
   .project-form{width:calc(100% - 24px);max-width:none;padding-inline:18px}
 }
+
+
+/* Refinamento de layout: formulário desktop, chip mobile e opção sem endereço. */
+
+/* Desktop: formulário alinhado, colunas consistentes e campos sem estouro. */
+@media(min-width:1001px){
+  .briefing{
+    grid-template-columns:minmax(300px,.72fr) minmax(620px,1.28fr);
+    align-items:start;
+    gap:clamp(48px,6vw,90px);
+  }
+  .briefing-intro{min-width:0}
+  .project-form{
+    width:100%;
+    max-width:880px;
+    justify-self:end;
+    padding:42px;
+  }
+  .field-grid{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    align-items:start;
+    gap:18px;
+  }
+  .field-grid>label,
+  .field-grid>.address-field,
+  .phone-field label{min-width:0}
+  .phone-field{
+    grid-template-columns:minmax(190px,.72fr) minmax(300px,1.28fr);
+    align-items:start;
+    gap:18px;
+  }
+  .phone-field:has(.custom-code:not([hidden])){
+    grid-template-columns:minmax(170px,.68fr) minmax(120px,.45fr) minmax(260px,1fr);
+  }
+  .address-field{align-self:start}
+  .address-field>label:first-child{margin-bottom:11px}
+  .form-actions{clear:both}
+}
+
+/* Tablet: mantém o formulário centralizado e alinhado. */
+@media(min-width:701px) and (max-width:1000px){
+  .project-form{width:min(100%,820px);margin-inline:auto}
+  .field-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
+  .phone-field{grid-template-columns:minmax(180px,.75fr) minmax(280px,1.25fr)}
+}
+
+/* A opção sem endereço ocupa apenas o espaço necessário. */
+.no-address{
+  width:max-content;
+  max-width:100%;
+  justify-self:start;
+  align-self:start;
+  white-space:normal;
+}
+.no-address input{flex:0 0 auto}
+
+@media(max-width:700px){
+  /* Posiciona "Sua ideia" abaixo da janela, sem cobrir as etapas 02 e 03. */
+  .hero-builder{padding-bottom:30px}
+  .idea-chip{
+    left:10px;
+    bottom:-2px;
+    z-index:5;
+    padding:10px 13px;
+    animation-name:ideaChipCornerMobile;
+  }
+  .price-chip{z-index:5}
+
+  /* Checkbox compacto no celular. */
+  .address-field .no-address{
+    display:inline-flex;
+    width:auto;
+    max-width:100%;
+    min-height:36px;
+    margin-top:0;
+    padding:7px 10px;
+    justify-self:start;
+    border-radius:10px;
+  }
+}
+
+@keyframes ideaChipCornerMobile{
+  0%,100%{transform:translate3d(0,0,0) rotate(0)}
+  50%{transform:translate3d(18px,-8px,0) rotate(1deg)}
+}
