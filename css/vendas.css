@@ -39,3 +39,138 @@
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
 
 .hero-copy.reveal{opacity:1;transform:none}
+
+
+/* Validated form controls */
+.phone-field{display:grid;grid-template-columns:minmax(155px,.8fr) minmax(220px,1.2fr);gap:18px;grid-column:1/-1}.phone-field .phone-number{grid-column:auto}.phone-field .custom-code[hidden]{display:none}.phone-field:has(.custom-code:not([hidden])){grid-template-columns:minmax(150px,.8fr) minmax(120px,.55fr) minmax(210px,1.2fr)}
+.field-help,.char-counter{display:block;margin-top:-3px;color:#777783;font-size:9px;font-weight:500;line-height:1.4}.char-counter{text-align:right}.char-counter.near-limit{color:#d24d72;font-weight:800}input:invalid:not(:placeholder-shown),textarea:invalid:not(:placeholder-shown),select:invalid{border-color:#e1889f}.phone-field input{font-variant-numeric:tabular-nums}
+@media(max-width:700px){.phone-field,.phone-field:has(.custom-code:not([hidden])){grid-template-columns:1fr;gap:0}.phone-field .phone-number{grid-column:1}.field-help,.char-counter{font-size:9px}}
+
+
+/* Ajustes mobile: formulario mais compacto e carrosseis somente horizontais. */
+@media(max-width:700px){
+  /* Formulario mais compacto, preservando area de toque confortavel. */
+  .briefing{padding:72px 14px;gap:24px}
+  .briefing-intro h2{font-size:40px}
+  .briefing-intro>p:not(.eyebrow){font-size:13px;line-height:1.55}
+  .step-list{margin-top:22px}
+  .step-list button{padding:5px}
+  .step-list button span{width:28px;height:28px}
+
+  .project-form{min-height:0;padding:26px 16px 20px;border-radius:20px}
+  .form-step legend{margin-bottom:22px;font-size:22px;line-height:1.08}
+  .form-step legend small{margin-bottom:7px;font-size:8px}
+  label{gap:6px;margin-bottom:13px;font-size:10px}
+  input,select,textarea{padding:11px 12px;border-radius:11px;font-size:13px}
+  textarea{min-height:96px}
+  #descricao{min-height:120px}
+  #referencias{min-height:82px}
+  .field-help,.char-counter{font-size:8px}
+  .option-group{gap:6px;margin:18px 0}
+  .option-group label{padding:8px 9px;font-size:9px}
+  .summary{gap:6px}
+  .summary div{grid-template-columns:82px 1fr;gap:10px;padding:10px 7px}
+  .summary span{font-size:9px}.summary b{font-size:10px;overflow-wrap:anywhere}
+  .consent{font-size:9px}
+  .privacy{font-size:8px}
+  .form-actions{margin-top:24px;padding-top:18px}
+  .form-actions button{min-height:43px;padding:0 11px;font-size:10px}
+
+  /* O gesto iniciado nos carrosseis fica restrito ao eixo horizontal. */
+  .catalog-panel.active,
+  .price-table,
+  .how{
+    touch-action:pan-x;
+    overscroll-behavior-x:contain;
+    overscroll-behavior-y:none;
+    -webkit-overflow-scrolling:touch;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+  }
+  .catalog-panel.active::-webkit-scrollbar,
+  .price-table::-webkit-scrollbar,
+  .how::-webkit-scrollbar{display:none}
+  .catalog-panel.active,.price-table,.how{scrollbar-width:none}
+
+  /* Impede selecao/arrasto acidental de conteudo dentro dos cards. */
+  .catalog-panel article,
+  .price-table>div,
+  .how article{
+    user-select:none;
+    -webkit-user-select:none;
+    -webkit-user-drag:none;
+  }
+}
+@media(max-width:380px){
+  .briefing{padding-inline:10px}
+  .project-form{padding:24px 13px 18px}
+  .form-step legend{font-size:20px}
+  input,select,textarea{font-size:12px}
+}
+
+
+/* UX mobile final: formulário estreito, telefone contextual e gesto natural nos carrosséis. */
+.phone-input-wrap{display:flex;align-items:stretch;border:1px solid #dcdce3;border-radius:13px;background:#fbfbfb;overflow:hidden;transition:.2s}.phone-input-wrap:focus-within{border-color:var(--blue);box-shadow:0 0 0 4px rgba(86,84,245,.1)}.phone-input-wrap>span{display:flex;align-items:center;padding:0 12px;border-right:1px solid #dcdce3;background:#f0f0f4;color:#4f4f59;font-size:12px;font-weight:800;white-space:nowrap}.phone-input-wrap input{border:0!important;border-radius:0;box-shadow:none!important;background:transparent}.address-field{display:grid}.no-address{display:flex;align-items:center;gap:8px;margin-top:-5px;padding:9px 11px;border:1px solid #dedee4;border-radius:11px;background:#fafafa;font-size:9px;cursor:pointer}.no-address input{width:auto;margin:0;accent-color:var(--blue)}input:disabled{opacity:.65;cursor:not-allowed}
+@media(max-width:700px){
+  .briefing{padding-inline:0}
+  .briefing-intro{width:calc(100% - 36px);margin-inline:auto}
+  .project-form{width:min(76vw,330px);margin-inline:auto;padding:22px 13px 18px;border-radius:18px}
+  .form-step legend{font-size:20px}
+  input,select,textarea{padding:10px;font-size:12px}
+  .phone-input-wrap{border-radius:10px}.phone-input-wrap>span{padding-inline:9px;font-size:11px}.phone-input-wrap input{min-width:0}
+  .no-address{font-size:8.5px;line-height:1.35}
+
+  /* Permite rolagem vertical normal mesmo quando o gesto começa sobre um carrossel. */
+  .catalog-panel.active,
+  .price-table,
+  .how{
+    touch-action:auto!important;
+    overscroll-behavior-x:contain;
+    overscroll-behavior-y:auto!important;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x proximity;
+    scroll-behavior:smooth;
+  }
+  .catalog-panel article,
+  .price-table>div,
+  .how article{touch-action:auto}
+}
+@media(max-width:380px){
+  .project-form{width:78vw;max-width:295px;padding-inline:11px}
+}
+
+
+/* Correção final: largura confortável, menor altura e país/código sincronizado. */
+@media(max-width:700px){
+  .briefing{padding-top:60px;padding-bottom:56px}
+  .briefing-intro{width:calc(100% - 32px)}
+  .briefing-intro h2{margin-bottom:12px;font-size:36px;line-height:.98}
+  .briefing-intro>p:not(.eyebrow){margin-bottom:12px;font-size:12px;line-height:1.45}
+  .step-list{margin-top:15px}
+
+  .project-form{width:calc(100% - 32px);max-width:440px;padding:20px 24px 16px;border-radius:20px}
+  .form-step legend{margin-bottom:16px;font-size:20px}
+  .form-step legend small{margin-bottom:5px}
+  .field-grid{gap:0}
+  label{gap:5px;margin-bottom:9px;font-size:10px}
+  input,select,textarea{min-height:42px;padding:8px 11px;font-size:12px}
+  .field-help,.char-counter{margin-top:-2px;font-size:7.5px;line-height:1.25}
+  .phone-field{gap:0}
+  .phone-input-wrap{min-height:42px}
+  .phone-input-wrap>span{padding-inline:10px}
+  .address-field .no-address{min-height:38px;margin-top:-2px;padding:7px 9px}
+  .option-group{margin:13px 0;gap:5px}
+  .option-group label{padding:7px 8px}
+  textarea{min-height:74px}
+  #descricao{min-height:92px}
+  #referencias{min-height:64px}
+  .form-actions{margin-top:16px;padding-top:13px}
+  .form-actions button{min-height:40px}
+
+  .catalog-panel.active,.price-table,.how{touch-action:auto!important;scroll-snap-type:x proximity}
+}
+@media(max-width:380px){
+  .project-form{width:calc(100% - 24px);max-width:none;padding-inline:18px}
+}
